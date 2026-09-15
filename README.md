@@ -55,21 +55,24 @@ In a manufacturing environment this system replaces manual visual inspection on 
 ---
 
 ## Architecture
+
+```
 casting image
-↓
+      ↓
 FastAPI REST endpoint (/predict)
-↓
+      ↓
 Image preprocessing (resize 224x224, normalize)
-↓
+      ↓
 ResNet18 — fine-tuned classifier
-↓
+      ↓
 Prediction + confidence score
-↓
+      ↓
 Grad-CAM heatmap generation
-↓
+      ↓
 JSON response with classification,
 confidence, recommendation,
 and base64 Grad-CAM overlay
+```
 
 ---
 
@@ -86,23 +89,26 @@ and base64 Grad-CAM overlay
 ---
 
 ## Project Structure
+
+```
 defect-detection/
 ├── src/
-│ ├── data_prep.py # Dataset loading, augmentation, DataLoaders
-│ ├── model.py # ResNet18 architecture and transfer learning
-│ ├── train.py # Two-phase training loop with checkpointing
-│ ├── evaluate.py # Metrics, confusion matrix, visualizations
-│ └── gradcam.py # Grad-CAM implementation and visualization
+│   ├── data_prep.py      # Dataset loading, augmentation, DataLoaders
+│   ├── model.py          # ResNet18 architecture and transfer learning
+│   ├── train.py          # Two-phase training loop with checkpointing
+│   ├── evaluate.py       # Metrics, confusion matrix, visualizations
+│   └── gradcam.py        # Grad-CAM implementation and visualization
 ├── api/
-│ └── main.py # FastAPI REST endpoints
+│   └── main.py           # FastAPI REST endpoints
 ├── tests/
-│ └── test_api.py # Automated test suite
-├── outputs/ # Generated visualizations
-├── models/ # Saved model weights
-├── Dockerfile # Container definition
-├── requirements.txt # Python dependencies
-└── .github/workflows/ # CI/CD pipeline
-└── ci.yml
+│   └── test_api.py       # Automated test suite
+├── outputs/              # Generated visualizations
+├── models/               # Saved model weights
+├── Dockerfile            # Container definition
+├── requirements.txt      # Python dependencies
+└── .github/workflows/    # CI/CD pipeline
+    └── ci.yml
+```
 
 ---
 
